@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeSnap — Beautiful code screenshots</title>
+  <meta name="description" content="CodeSnap turns your code into beautiful, shareable screenshots in one keystroke." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Apply saved theme before paint to avoid a flash
+    try {
+      var t = localStorage.getItem('codesnap-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#home" class="logo" data-scroll>
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg>
+        </span>
+        CodeSnap
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#features" data-scroll>Features</a>
+        <a href="#pricing" data-scroll>Pricing</a>
+        <a href="#footer" data-scroll>Docs</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle color theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="#pricing" class="btn btn--primary btn--sm nav__cta" data-scroll>Get started</a>
+        <button class="icon-btn nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <a href="#features" class="pill" data-scroll>
+            <span class="pill__tag">New</span> v2.0 — 40+ themes &amp; VS Code extension <span aria-hidden="true">→</span>
+          </a>
+          <h1>Code screenshots<br /><span class="gradient-text">worth sharing.</span></h1>
+          <p class="hero__sub">
+            CodeSnap turns any snippet into a crisp, beautifully framed image in one keystroke.
+            Perfect for tweets, docs, slides, and pull requests.
+          </p>
+          <div class="hero__ctas">
+            <a href="#pricing" class="btn btn--primary btn--lg" data-scroll>Start for free</a>
+            <a href="#features" class="btn btn--ghost btn--lg" data-scroll>
+              See features
+            </a>
+          </div>
+          <div class="hero__install">
+            <code><span class="prompt">$</span> npm i -g codesnap</code>
+            <button class="copy-btn" id="copyInstall" aria-label="Copy install command">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-btn__label">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Example screenshot -->
+        <div class="hero__shot">
+          <div class="snap" id="snap">
+            <div class="window">
+              <div class="window__bar">
+                <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+                <span class="window__title">useDebounce.ts</span>
+              </div>
+<pre class="code"><code><span class="ln">1</span><span class="kw">import</span> { useEffect, useState } <span class="kw">from</span> <span class="str">'react'</span>;
+<span class="ln">2</span>
+<span class="ln">3</span><span class="kw">export function</span> <span class="fn">useDebounce</span>&lt;<span class="ty">T</span>&gt;(value: <span class="ty">T</span>, delay = <span class="num">300</span>) {
+<span class="ln">4</span>  <span class="kw">const</span> [debounced, setDebounced] = <span class="fn">useState</span>(value);
+<span class="ln">5</span>
+<span class="ln">6</span>  <span class="fn">useEffect</span>(() =&gt; {
+<span class="ln">7</span>    <span class="kw">const</span> id = <span class="fn">setTimeout</span>(() =&gt; <span class="fn">setDebounced</span>(value), delay);
+<span class="ln">8</span>    <span class="kw">return</span> () =&gt; <span class="fn">clearTimeout</span>(id);
+<span class="ln">9</span>  }, [value, delay]);
+<span class="ln">10</span>
+<span class="ln">11</span>  <span class="kw">return</span> debounced; <span class="cm">// ✨ snapped with CodeSnap</span>
+<span class="ln">12</span>}</code></pre>
+            </div>
+          </div>
+          <div class="theme-picker" role="group" aria-label="Preview background">
+            <span>Background</span>
+            <button class="swatch is-active" data-bg="aurora" aria-label="Aurora"></button>
+            <button class="swatch" data-bg="ocean" aria-label="Ocean"></button>
+            <button class="swatch" data-bg="sunset" aria-label="Sunset"></button>
+            <button class="swatch" data-bg="mono" aria-label="Mono"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">// features</p>
+          <h2>Everything you need, nothing you don't</h2>
+          <p class="section__sub">Built by developers who were tired of cropping terminal screenshots at 2am.</p>
+        </div>
+
+        <div class="features">
+          <article class="card feature">
+            <div class="feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.56-2.5 5.56-5.56C21.97 6.01 17.46 2 12 2z"/></svg>
+            </div>
+            <h3>40+ editor themes</h3>
+            <p>Dracula, One Dark, GitHub, Nord, Tokyo Night and more — with syntax highlighting for 200+ languages, auto-detected.</p>
+            <code class="feature__code">--theme tokyo-night</code>
+          </article>
+
+          <article class="card feature">
+            <div class="feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>One-keystroke capture</h3>
+            <p>Select code in VS Code, JetBrains, or your terminal and hit <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>S</kbd>. The image lands on your clipboard instantly.</p>
+            <code class="feature__code">codesnap app.py --clip</code>
+          </article>
+
+          <article class="card feature">
+            <div class="feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            </div>
+            <h3>Export anywhere</h3>
+            <p>Retina PNG, SVG, or WebP. Share a permalink, post straight to X or Slack, or embed live snippets in your docs.</p>
+            <code class="feature__code">--out snap.svg --scale 3x</code>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section section--alt" id="pricing">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">// pricing</p>
+          <h2>Simple, developer-friendly pricing</h2>
+          <p class="section__sub">Start free. Upgrade when your snippets go viral.</p>
+
+          <div class="billing" role="group" aria-label="Billing period">
+            <button class="billing__opt is-active" data-period="monthly">Monthly</button>
+            <button class="billing__opt" data-period="yearly">Yearly <span class="save">-20%</span></button>
+          </div>
+        </div>
+
+        <div class="plans">
+          <article class="card plan">
+            <h3>Free</h3>
+            <p class="plan__desc">For hobby projects and the occasional tweet.</p>
+            <p class="plan__price"><span class="amount">$0</span><span class="per">/ forever</span></p>
+            <a href="#home" class="btn btn--ghost btn--block" data-scroll>Get started</a>
+            <ul class="plan__list">
+              <li>10 core themes</li>
+              <li>PNG export up to 2x</li>
+              <li>CLI &amp; VS Code extension</li>
+              <li>Small CodeSnap watermark</li>
+            </ul>
+          </article>
+
+          <article class="card plan plan--pro">
+            <span class="plan__badge">Most popular</span>
+            <h3>Pro</h3>
+            <p class="plan__desc">For creators, educators, and teams who ship content.</p>
+            <p class="plan__price">
+              <span class="amount" id="proPrice" data-monthly="8" data-yearly="6.40">$8</span><span class="per" id="proPer">/ month</span>
+            </p>
+            <a href="#home" class="btn btn--primary btn--block" data-scroll>Start 14-day trial</a>
+            <ul class="plan__list">
+              <li>All 40+ themes &amp; custom themes</li>
+              <li>SVG, WebP &amp; 4x retina export</li>
+              <li>No watermark, custom branding</li>
+              <li>Shareable permalinks &amp; embeds</li>
+              <li>Team libraries &amp; priority support</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#home" class="logo" data-scroll>
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg>
+          </span>
+          CodeSnap
+        </a>
+        <p>Beautiful code screenshots for developers.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Product</h4>
+        <a href="#features" data-scroll>Features</a>
+        <a href="#pricing" data-scroll>Pricing</a>
+        <a href="#home" data-scroll>Changelog</a>
+      </div>
+      <div class="footer__col">
+        <h4>Developers</h4>
+        <a href="#home" data-scroll>CLI docs</a>
+        <a href="#home" data-scroll>VS Code extension</a>
+        <a href="#home" data-scroll>API reference</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="#home" data-scroll>About</a>
+        <a href="#home" data-scroll>Privacy</a>
+        <a href="#home" data-scroll>Terms</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year">2026</span> CodeSnap. Made with ☕ and <code>&lt;/&gt;</code></span>
+      <a href="#home" class="back-top" data-scroll>Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
