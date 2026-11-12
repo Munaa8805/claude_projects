@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. A cool sage paper, a white "nutrition label" surface with
+ * pure black ink, one green for add actions, and one muted colour per macro.
+ */
+:root {
+  --paper: #eef1ec;
+  --surface: #ffffff;
+  --ink: #000000;
+  --text: #1c211d;
+  --muted: #586159;
+  --line: #c9d0c8;
+  --accent: #2f6b3a;
+  --accent-ink: #ffffff;
+  --protein: #2d5f9a;
+  --carbs: #b07d0e;
+  --fat: #a23e6b;
+  --over: #b42318;
+  --highlight: #fff1a8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #131713;
+    --surface: #1b201c;
+    --ink: #f2f4ef;
+    --text: #e3e7e1;
+    --muted: #9da69e;
+    --line: #394139;
+    --accent: #86c793;
+    --accent-ink: #0f1a11;
+    --protein: #82abe0;
+    --carbs: #e2b64e;
+    --fat: #e283ae;
+    --over: #ff8b7b;
+    --highlight: #46421c;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-protein: var(--protein);
+  --color-carbs: var(--carbs);
+  --color-fat: var(--fat);
+  --color-over: var(--over);
+  --color-highlight: var(--highlight);
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1; /* tabular figures so numbers line up */
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Condensed display cut of Archivo, used for the label's numbers and day name. */
+.label-type {
+  font-stretch: 62%;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+}
+
+/* A log row that just changed flashes once so you can see what moved. */
+@keyframes changed {
+  from {
+    background-color: var(--highlight);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.just-changed {
+  animation: changed 1.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .just-changed {
+    animation: none;
+  }
+}
