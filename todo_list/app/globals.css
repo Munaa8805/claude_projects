@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Cool periwinkle paper, a white sheet, deep indigo ink, and
+ * one cobalt "marker" used for the checkbox and the strike-through on finished
+ * tasks. Priority gets its own three quiet colours.
+ */
+:root {
+  --paper: #e6e9f3;
+  --surface: #ffffff;
+  --ink: #1b2140;
+  --text: #2a3050;
+  --muted: #5d6484;
+  --line: #d3d8e8;
+  --accent: #2f4bd8;
+  --accent-ink: #ffffff;
+  --high: #c2303a;
+  --medium: #b97d06;
+  --low: #8a92b2;
+  --overdue: #b4232f;
+  --soon-bg: #fdf1d2;
+  --soon: #7a5200;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #12152a;
+    --surface: #1b1f38;
+    --ink: #eef0fb;
+    --text: #d9dcf0;
+    --muted: #9298ba;
+    --line: #333a5e;
+    --accent: #8ea0ff;
+    --accent-ink: #12152a;
+    --high: #ff8189;
+    --medium: #f0bd52;
+    --low: #7c84a8;
+    --overdue: #ff8b8b;
+    --soon-bg: #3a3218;
+    --soon: #f3cf7a;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-high: var(--high);
+  --color-medium: var(--medium);
+  --color-low: var(--low);
+  --color-overdue: var(--overdue);
+  --color-soon: var(--soon);
+  --color-soon-bg: var(--soon-bg);
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-variation-settings: "opsz" 14;
+}
+
+/* In the base layer so Tailwind utilities (e.g. outline-none) can override it. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Compressed display cut for the heading. */
+.display-type {
+  font-stretch: 75%;
+  font-weight: 800;
+  font-variation-settings: "opsz" 96;
+  letter-spacing: -0.035em;
+  line-height: 0.85;
+}
+
+/*
+ * The one flourish: finishing a task draws a cobalt marker stroke through it,
+ * line by line. It animates only when you tick it, not on page load.
+ */
+.task-title {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 55%;
+  background-size: 0% 0.15em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 0.1em;
+  margin: 0 -0.1em;
+}
+.is-done .task-title {
+  color: var(--muted);
+  background-size: 100% 0.15em;
+}
+.just-done .task-title {
+  transition: background-size 380ms cubic-bezier(0.6, 0, 0.2, 1);
+}
+
+/* Rows being dragged, and the row they'd land on. */
+.is-dragging {
+  opacity: 0.4;
+}
+.drop-before {
+  box-shadow: inset 0 3px 0 var(--accent);
+}
+.drop-after {
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* Native date input: match the text colour in both themes. */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .just-done .task-title {
+    transition: none;
+  }
+}
