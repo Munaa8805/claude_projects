@@ -1,0 +1,69 @@
+.header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgb(236 237 233 / .92); backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--c-line);
+}
+.header__inner { height: var(--header-h); display: flex; align-items: center; gap: var(--s-6); }
+
+.wordmark { display: inline-flex; align-items: center; gap: var(--s-2); text-decoration: none; flex: none; }
+.wordmark__plate {
+  display: inline-grid; place-items: center; height: 26px; padding: 0 6px;
+  background: var(--c-signal); border: 1.5px solid var(--c-ink); border-radius: var(--r-plate);
+  font-stretch: var(--w-condensed); font-weight: 900; font-size: 14px; letter-spacing: .06em;
+}
+.wordmark__text { font-stretch: 112%; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
+
+.header__nav { display: flex; gap: var(--s-1); flex: 1; }
+.header__link {
+  position: relative; padding: 8px 12px; border-radius: var(--r-control);
+  text-decoration: none; font-size: var(--fs-sm); font-weight: 600; color: var(--c-ink-2);
+  transition: color var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+}
+.header__link:hover { color: var(--c-ink); background: rgb(31 36 40 / .06); }
+.header__link.active:not(.header__link--minor) { color: var(--c-ink); }
+.header__link.active:not(.header__link--minor)::after {
+  content: ''; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px; background: var(--c-ink);
+}
+
+.header__actions { display: flex; align-items: center; gap: var(--s-1); margin-left: auto; }
+.header__icon, .header__menu {
+  position: relative; display: grid; place-items: center; width: 42px; height: 42px;
+  border-radius: var(--r-control); background: none; border: 0; color: var(--c-ink);
+  transition: background-color var(--t-fast) var(--ease);
+}
+.header__icon:hover, .header__menu:hover { background: rgb(31 36 40 / .07); }
+.header__count {
+  position: absolute; top: 3px; right: 2px; min-width: 18px; height: 18px; padding: 0 5px;
+  display: grid; place-items: center; border-radius: var(--r-pill);
+  background: var(--c-ink); color: var(--c-paper); font-size: 11px; font-weight: 700;
+}
+.header__count--signal { background: var(--c-signal); color: var(--c-ink); box-shadow: 0 0 0 1.5px var(--c-ink); }
+.header__signin {
+  margin-left: var(--s-2); padding: 8px 16px; border: 1.5px solid var(--c-ink); border-radius: var(--r-control);
+  font-weight: 650; font-size: var(--fs-sm); text-decoration: none;
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.header__signin:hover { background: var(--c-ink); color: var(--c-paper); }
+.header__account { display: flex; align-items: center; gap: var(--s-2); margin-left: var(--s-2); text-decoration: none; font-weight: 600; font-size: var(--fs-sm); padding: 4px 10px 4px 4px; border-radius: var(--r-pill); }
+.header__account:hover { background: rgb(31 36 40 / .07); }
+.header__avatar { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--c-ink); color: var(--c-signal); font-weight: 800; }
+.header__menu { display: none; }
+
+@media (max-width: 860px) {
+  .header__menu { display: grid; }
+  .header__account-name { display: none; }
+  .header__account { padding: 4px; }
+  .header__nav {
+    position: absolute; top: var(--header-h); left: 0; right: 0; flex-direction: column;
+    padding: var(--s-3) var(--gutter) var(--s-5); background: var(--c-bg); border-bottom: 1px solid var(--c-line);
+    visibility: hidden; opacity: 0; transform: translateY(-6px);
+    transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease), visibility 0s linear var(--t-med);
+  }
+  .header__nav.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+  .header__link { padding: 14px 4px; font-size: var(--fs-lg); border-radius: 0; border-bottom: 1px solid var(--c-line); color: var(--c-ink); }
+  .header__link.active::after { display: none; }
+}
+@media (max-width: 420px) {
+  .wordmark__text { display: none; }
+  .header__signin { padding: 8px 12px; }
+}

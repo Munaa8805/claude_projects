@@ -1,0 +1,32 @@
+.cart { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: var(--s-7); align-items: start; }
+.cart__list { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--c-ink); }
+.cart__item { display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: var(--s-5); padding: var(--s-5) 0; border-bottom: 1px solid var(--c-line); align-items: start; }
+.cart__item.is-unavailable .car-img { filter: grayscale(1); opacity: .6; }
+.cart__thumb { display: block; }
+.cart__skel-img { aspect-ratio: 3 / 2; }
+.cart__info { display: grid; gap: var(--s-1); justify-items: start; }
+.cart__name { font-size: var(--fs-xl); margin-top: var(--s-2); }
+.cart__name a { text-decoration: none; }
+.cart__name a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.cart__meta { font-size: var(--fs-sm); }
+.cart__warn { display: flex; gap: 6px; align-items: center; margin-top: var(--s-2); color: var(--c-danger); font-size: var(--fs-sm); font-weight: 600; }
+.cart__side { display: grid; justify-items: end; gap: 2px; text-align: right; }
+.cart__price { font-size: var(--fs-xl); font-weight: 800; font-stretch: var(--w-condensed); }
+.cart__deposit { font-size: var(--fs-sm); color: var(--c-ink-2); }
+.cart__remove {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s-3);
+  background: none; border: 0; padding: 6px 8px; margin-right: -8px; border-radius: var(--r-control);
+  font-size: var(--fs-sm); font-weight: 600; color: var(--c-ink-2);
+  transition: color var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+}
+.cart__remove:hover { color: var(--c-danger); background: var(--c-danger-bg); }
+.cart__continue { display: inline-block; margin-top: var(--s-5); }
+.cart__block { font-size: var(--fs-sm); color: var(--c-danger); font-weight: 600; }
+
+@media (max-width: 960px) { .cart { grid-template-columns: 1fr; } }
+@media (max-width: 620px) {
+  .cart__item { grid-template-columns: 120px minmax(0, 1fr); }
+  .cart__side { grid-column: 1 / -1; grid-template-columns: 1fr auto; justify-items: start; align-items: center; text-align: left; }
+  .cart__side .cart__deposit { grid-column: 1; }
+  .cart__side .cart__remove { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+}

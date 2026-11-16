@@ -1,0 +1,20 @@
+.top-loader {
+  position: fixed; z-index: 80; left: 0; right: 0; top: var(--header-h);
+  height: 3px; overflow: hidden; pointer-events: none;
+}
+.top-loader__bar {
+  position: absolute; inset: 0 auto 0 0; width: 100%;
+  background: var(--c-signal); box-shadow: 0 0 0 1px rgb(31 36 40 / .15);
+  transform: scaleX(0); transform-origin: left;
+}
+.top-loader--running .top-loader__bar { animation: top-loader-run 8s cubic-bezier(.1, .7, .2, 1) forwards; }
+.top-loader--done .top-loader__bar { transform: scaleX(1); opacity: 0; transition: transform 180ms var(--ease), opacity 220ms 180ms linear; }
+/* Ease towards ~90% and wait there; we don't know the real progress. */
+@keyframes top-loader-run {
+  0% { transform: scaleX(0); }
+  20% { transform: scaleX(.45); }
+  100% { transform: scaleX(.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .top-loader--running .top-loader__bar { animation: none; transform: scaleX(1); opacity: .7; }
+}

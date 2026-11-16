@@ -1,0 +1,28 @@
+.car-card { position: relative; display: grid; gap: var(--s-4); }
+.car-card__media { position: relative; }
+.car-card__media .car-img img { transform: scale(1.001); }
+.car-card:hover .car-img img { transform: scale(1.035); }
+.car-card__badge {
+  position: absolute; left: var(--s-3); top: var(--s-3);
+  background: var(--c-ink); color: var(--c-paper);
+  font-size: var(--fs-xs); font-weight: 650; padding: 3px 10px; border-radius: var(--r-pill);
+}
+.car-card--reserved .car-img img { filter: grayscale(.6); opacity: .8; }
+
+.car-card__body { display: grid; grid-template-columns: 1fr auto; column-gap: var(--s-4); row-gap: 2px; }
+.car-card__name { grid-column: 1 / -1; font-size: var(--fs-xl); line-height: 1.05; }
+.car-card__link { text-decoration: none; }
+/* Whole card is the click target; save button sits above via z-index */
+.car-card__link::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: var(--r-control); }
+.car-card__link:focus-visible { box-shadow: none; }
+.car-card__link:focus-visible::after { box-shadow: var(--focus); }
+.car-card__link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.car-card__trim { grid-column: 1 / -1; color: var(--c-ink-2); font-size: var(--fs-sm); }
+.car-card__specs {
+  grid-column: 1 / -1; order: 4;
+  list-style: none; margin: var(--s-2) 0 0; padding: var(--s-2) 0 0; display: flex; flex-wrap: wrap; gap: 2px 6px;
+  border-top: 1px solid var(--c-line); font-size: var(--fs-xs); color: var(--c-ink-2);
+}
+.car-card__specs li { padding: 2px 8px; border-radius: var(--r-pill); background: rgb(31 36 40 / .06); }
+.car-card__specs li:first-child { margin-left: 0; }
+.car-card__price { grid-column: 1 / -1; order: 3; margin-top: var(--s-2); font-size: var(--fs-xl); font-weight: 800; font-stretch: var(--w-condensed); line-height: 1.1; }

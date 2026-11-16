@@ -1,0 +1,78 @@
+.hero { padding-top: var(--s-7); }
+.hero__title {
+  font-size: var(--fs-display);
+  max-width: 11ch;
+  text-wrap: balance;
+}
+.hero__lede { margin-top: var(--s-5); max-width: 56ch; font-size: var(--fs-lg); line-height: 1.5; color: var(--c-ink-2); }
+
+.hero__stage { position: relative; margin-top: var(--s-7); }
+.hero__figure { margin: 0; position: relative; }
+.hero__img { aspect-ratio: 21 / 9; border-radius: var(--r-panel); }
+.hero__img img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+.hero__figure figcaption { position: absolute; right: var(--s-4); top: var(--s-4); }
+.hero__figure figcaption a {
+  display: inline-block; padding: 6px 12px; border-radius: var(--r-pill);
+  background: rgb(255 255 255 / .88); font-size: var(--fs-xs); font-weight: 600; text-decoration: none;
+  transition: background-color var(--t-fast) var(--ease);
+}
+.hero__figure figcaption a:hover { background: var(--c-signal); }
+
+.hero__search {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; align-items: end; gap: var(--s-4);
+  margin: calc(var(--s-8) * -1) var(--s-6) 0; padding: var(--s-5);
+  background: var(--c-paper); border: 1.5px solid var(--c-ink); border-radius: var(--r-panel);
+}
+@media (max-width: 900px) {
+  .hero__img { aspect-ratio: 16 / 10; }
+  .hero__search { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: calc(var(--s-6) * -1) var(--s-3) 0; }
+  .hero__search .btn { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .hero { padding-top: var(--s-6); }
+  .hero__img { aspect-ratio: 4 / 3; }
+  .hero__search { grid-template-columns: 1fr; margin: var(--s-3) 0 0; padding: var(--s-4); }
+}
+
+.home-bodies { margin-top: var(--s-8); }
+.bodies { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1.5px solid var(--c-ink); }
+.bodies li + li { border-left: 1px solid var(--c-line); }
+.bodies__link {
+  display: grid; gap: 2px; padding: var(--s-4) var(--s-4) var(--s-5); text-decoration: none;
+  transition: background-color var(--t-fast) var(--ease);
+}
+.bodies__link:hover { background: var(--c-surface); }
+.bodies__link:hover .bodies__name { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.bodies__name { font-size: var(--fs-2xl); }
+.bodies__count { font-size: var(--fs-sm); color: var(--c-ink-2); }
+@media (max-width: 760px) {
+  .bodies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bodies li { border-bottom: 1px solid var(--c-line); }
+  .bodies li + li { border-left: 0; }
+  .bodies li:nth-child(even) { border-left: 1px solid var(--c-line); }
+  .bodies__name { font-size: var(--fs-xl); }
+}
+
+.home-section { margin-top: var(--s-9); }
+.home-section__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); margin-bottom: var(--s-6); flex-wrap: wrap; }
+.home-section__title { font-size: var(--fs-3xl); }
+.text-link { font-weight: 650; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+.text-link:hover { text-decoration-thickness: 3px; }
+
+.how { margin-top: var(--s-9); background: var(--c-signal); border-block: 1.5px solid var(--c-ink); }
+.how__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--s-7); padding-block: var(--s-8); }
+.how__title { font-size: var(--fs-3xl); max-width: 8ch; }
+.how__steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); counter-reset: step; }
+.how__steps li { counter-increment: step; border-top: 3px solid var(--c-ink); padding-top: var(--s-4); }
+.how__steps li::before {
+  content: counter(step); display: block; margin-bottom: var(--s-3);
+  font-stretch: var(--w-condensed); font-weight: 800; font-size: var(--fs-2xl); line-height: 1;
+}
+.how__steps h3 { font-size: var(--fs-xl); margin-bottom: var(--s-2); }
+.how__steps p { font-size: var(--fs-sm); max-width: 34ch; }
+@media (max-width: 900px) {
+  .how__inner { grid-template-columns: 1fr; }
+  .how__title { max-width: none; }
+}
+@media (max-width: 640px) { .how__steps { grid-template-columns: 1fr; } }

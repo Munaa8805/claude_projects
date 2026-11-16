@@ -1,0 +1,11 @@
+.plate {
+  display: inline-flex; align-items: center;
+  background: var(--c-signal); color: var(--c-signal-ink);
+  border: 1.5px solid var(--c-ink); border-radius: var(--r-plate);
+  box-shadow: inset 0 0 0 2px var(--c-signal), inset 0 0 0 3px rgb(31 36 40 / .35);
+  font-stretch: var(--w-condensed); font-weight: 800; letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.plate--sm { font-size: 12px; padding: 2px 7px; }
+.plate--md { font-size: 15px; padding: 4px 10px; }
+.plate--lg { font-size: 22px; padding: 6px 14px; }

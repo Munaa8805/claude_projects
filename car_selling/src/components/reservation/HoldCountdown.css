@@ -1,0 +1,19 @@
+.hold { display: grid; gap: var(--s-2); padding: var(--s-5); background: var(--c-ink); color: var(--c-paper); border-radius: var(--r-panel); }
+.hold__label { font-size: var(--fs-sm); color: #b9c0c2; font-weight: 600; }
+.hold__time { font-stretch: var(--w-condensed); font-weight: 800; font-size: clamp(2.75rem, 6vw, 4rem); line-height: 1; letter-spacing: -0.01em; }
+.hold__time small { font-size: .45em; font-weight: 600; margin-left: 2px; color: #b9c0c2; }
+.hold__track { height: 6px; border-radius: 3px; background: #3a4146; overflow: hidden; margin-top: var(--s-2); }
+.hold__track span { display: block; height: 100%; background: var(--c-signal); transition: width 1s linear; }
+.hold.is-urgent .hold__track span { background: #f08a6c; }
+.hold__ends { font-size: var(--fs-sm); color: #b9c0c2; }
+.hold-compact { font-size: var(--fs-sm); font-weight: 650; }
+.hold-compact.is-urgent { color: var(--c-danger); }
+.hold__rule { font-size: var(--fs-xs); color: #8e979b; }
+.hold__change {
+  justify-self: start; margin-top: var(--s-1); padding: 3px 10px; border-radius: var(--r-pill);
+  background: var(--c-signal); color: var(--c-ink); font-size: var(--fs-xs); font-weight: 700;
+  animation: hold-flag var(--t-med) var(--ease);
+}
+.hold.is-updated .hold__time { animation: hold-pulse 900ms var(--ease); }
+@keyframes hold-flag { from { opacity: 0; transform: translateY(4px); } }
+@keyframes hold-pulse { 30% { color: var(--c-signal); } }

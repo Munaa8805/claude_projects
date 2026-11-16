@@ -1,0 +1,12 @@
+.loading-img { position: relative; display: block; overflow: hidden; }
+.loading-img img { transition: opacity var(--t-med) var(--ease); }
+.loading-img.is-loading img, .loading-img.is-error img { opacity: 0; }
+.loading-img--shimmer.is-loading {
+  background: linear-gradient(90deg, #dfe1dc 0%, #e9eae6 50%, #dfe1dc 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s ease-in-out infinite;
+}
+.loading-img__spinner, .loading-img__error {
+  position: absolute; inset: 0; display: grid; place-items: center; color: var(--c-paper);
+}
+.loading-img--shimmer .loading-img__error { color: var(--c-ink-3); font-size: var(--fs-sm); }

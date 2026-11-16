@@ -1,0 +1,65 @@
+/* Design tokens. Everything visual should resolve to one of these. */
+:root {
+  /* Colour — forecourt signage: primer grey, graphite, plate yellow */
+  --c-bg: #ecede9;
+  --c-surface: #f6f6f3;
+  --c-paper: #ffffff;
+  --c-ink: #1f2428;
+  --c-ink-2: #4e5860;
+  --c-ink-3: #6d767d;
+  --c-line: #cdd1cb;
+  --c-line-strong: #9aa19b;
+  --c-signal: #f4c430;
+  --c-signal-hover: #e3b21c;
+  --c-signal-ink: #1f2428;
+  --c-danger: #a8322a;
+  --c-danger-bg: #f7e4e1;
+  --c-ok: #2f6b47;
+  --c-ok-bg: #e1ede5;
+  --c-scrim: rgb(31 36 40 / 0.55);
+
+  /* Type — one family, width is the expressive axis */
+  --font: 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --w-condensed: 68%;
+  --w-normal: 100%;
+  --fs-xs: 0.8125rem;   /* 13 */
+  --fs-sm: 0.9375rem;   /* 15 */
+  --fs-md: 1.0625rem;   /* 17 body */
+  --fs-lg: 1.3125rem;   /* 21 */
+  --fs-xl: 1.75rem;     /* 28 */
+  --fs-2xl: 2.375rem;   /* 38 */
+  --fs-3xl: clamp(2.75rem, 6vw, 4.5rem);
+  --fs-display: clamp(3.5rem, 11vw, 9.5rem);
+  --lh-tight: 0.92;
+  --lh-head: 1.05;
+  --lh-body: 1.55;
+
+  /* Space — 4px base */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  /* Shape — radius signals hierarchy: plate < control < panel */
+  --r-plate: 3px;
+  --r-control: 6px;
+  --r-panel: 10px;
+  --r-pill: 999px;
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 68px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 140ms;
+  --t-med: 240ms;
+
+  --focus: 0 0 0 2px var(--c-bg), 0 0 0 4px var(--c-ink);
+}

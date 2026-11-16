@@ -1,0 +1,58 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+  font-stretch: var(--w-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; }
+h1, h2, h3, h4, p { margin: 0; }
+h1, h2, h3, h4 { line-height: var(--lh-head); font-weight: 700; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: none; box-shadow: var(--focus); border-radius: var(--r-control); }
+::selection { background: var(--c-signal); color: var(--c-signal-ink); }
+
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+
+/* Condensed display treatment — the one loud typographic move */
+.display {
+  font-stretch: var(--w-condensed);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.012em;
+}
+.title { font-stretch: var(--w-condensed); font-weight: 750; letter-spacing: -0.005em; }
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--c-ink-2); }
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+
+.page { padding-block: var(--s-6) var(--s-9); }
+.page-head { margin-bottom: var(--s-6); max-width: 64ch; }
+.page-head h1 { font-size: var(--fs-3xl); }
+.page-head p { margin-top: var(--s-3); color: var(--c-ink-2); }
+
+.skip-link {
+  position: absolute; left: var(--s-4); top: -60px; z-index: 100;
+  background: var(--c-ink); color: var(--c-paper); padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-control); text-decoration: none;
+}
+.skip-link:focus { top: var(--s-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1; }
+main:focus { outline: none; }
