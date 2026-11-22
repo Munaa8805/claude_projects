@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Aura design system tokens (RGB channels so Tailwind can apply opacity) */
+:root {
+  --ground: 247 248 250;
+  --card: 255 255 255;
+  --card-sunken: 241 242 245;
+  --line: 230 232 236;
+  --line-strong: 213 216 222;
+  --ink: 21 23 28;
+  --ink-secondary: 58 63 72;
+  --ink-subtle: 94 100 110;
+  --ink-muted: 138 144 153;
+  --lime: 199 243 107;
+  --mint: 184 229 209;
+  --on-accent: 21 23 28;
+  --mint-ink: 36 70 58;
+  --recovery: 35 147 93;
+  --recovery-soft: 227 243 234;
+  --recovery-ink: 23 103 63;
+  --sleep: 139 123 224;
+  --sleep-deep: 90 71 199;
+  --sleep-light: 201 193 243;
+  --sleep-soft: 238 235 251;
+  --sleep-ink: 79 63 176;
+  --activity: 224 112 31;
+  --activity-light: 244 201 166;
+  --activity-soft: 252 238 227;
+  --activity-ink: 160 76 14;
+  --danger: 196 50 58;
+  --danger-soft: 252 233 234;
+  color-scheme: light;
+}
+.dark {
+  --ground: 21 23 28;
+  --card: 30 33 40;
+  --card-sunken: 43 47 55;
+  --line: 43 47 55;
+  --line-strong: 58 63 72;
+  --ink: 242 243 245;
+  --ink-secondary: 201 205 212;
+  --ink-subtle: 163 169 178;
+  --ink-muted: 138 144 153;
+  --recovery: 63 191 128;
+  --recovery-soft: 28 58 43;
+  --recovery-ink: 126 217 168;
+  --sleep: 165 152 240;
+  --sleep-deep: 124 107 230;
+  --sleep-light: 74 67 128;
+  --sleep-soft: 42 38 80;
+  --sleep-ink: 195 185 250;
+  --activity: 240 138 60;
+  --activity-light: 122 74 38;
+  --activity-soft: 61 38 20;
+  --activity-ink: 247 181 131;
+  --danger: 240 113 120;
+  --danger-soft: 66 30 33;
+  color-scheme: dark;
+}
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-ground text-ink font-sans antialiased;
+  font-feature-settings: 'cv11', 'ss01';
+}
+:focus-visible { outline: 2px solid rgb(var(--ink)); outline-offset: 2px; }
+.dark :focus-visible { outline-color: rgb(var(--lime)); }
+
+@layer components {
+  .card { @apply bg-card border border-line rounded-lg; }
+  .label { @apply text-xs font-medium text-ink-3; }
+  .metric { @apply font-display font-bold tracking-tight; }
+  .btn { @apply inline-flex items-center justify-center gap-2 h-11 px-5 rounded-full text-[15px] font-medium border border-line-strong bg-card text-ink transition-colors hover:bg-sunken disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-lime border-lime text-on-accent font-semibold hover:bg-lime hover:brightness-95; }
+  .btn-dark { @apply btn bg-ink border-ink text-ground font-semibold hover:bg-ink hover:opacity-90; }
+  .btn-ghost { @apply btn border-transparent bg-transparent hover:bg-sunken; }
+  .btn-sm { @apply h-9 px-4 text-sm; }
+  .icon-btn { @apply inline-flex items-center justify-center w-11 h-11 rounded-full border border-line bg-card text-ink hover:bg-sunken transition-colors; }
+  .chip { @apply w-fit inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1 text-[13px] leading-[18px] font-medium bg-sunken text-ink-2; }
+  .skeleton { @apply bg-sunken rounded-md animate-pulse; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Recharts tweaks */
+.recharts-cartesian-axis-tick-value { fill: rgb(var(--ink-subtle)); font-size: 12px; }
+.recharts-tooltip-cursor { fill: rgb(var(--card-sunken)); }
