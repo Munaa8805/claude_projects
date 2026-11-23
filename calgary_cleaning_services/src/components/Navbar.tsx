@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Logo } from "./Logo";
 import { contact } from "@/lib/data";
 
 const links = [
@@ -30,8 +30,15 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8" aria-label="Main">
-        <a href="#top" aria-label="Chinook Clean Co., back to top">
-          <Logo />
+        <a href="#top" aria-label="Jonon, back to top" className="flex h-full items-center">
+          <Image
+            src="/jonon_logo.png"
+            alt="Jonon"
+            width={1791}
+            height={878}
+            priority
+            className="h-12 w-auto object-contain"
+          />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">

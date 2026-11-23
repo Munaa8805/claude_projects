@@ -1,5 +1,5 @@
 import { areas, contact } from "@/lib/data";
-import { Logo } from "./Logo";
+import Image from "next/image";
 
 const quadColors: Record<string, string> = {
   NW: "var(--color-sky)",
@@ -50,7 +50,13 @@ export function Contact() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 text-sm text-white/60 md:flex-row md:items-center md:justify-between md:px-8">
-          <Logo light />
+          <Image
+            src="/jonon_logo.png"
+            alt="Jonon"
+            width={1791}
+            height={878}
+            className="h-12 w-auto object-contain"
+          />
           <p>Bonded and insured. WCB Alberta registered. &copy; 2026 Chinook Clean Co.</p>
         </div>
       </div>
